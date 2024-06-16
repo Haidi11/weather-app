@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherService } from './service/weather.service';
+import { WeatherService } from './shared/service/weather.service';
+import { ForecastComponent } from './shared/components/forecast/forecast.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
+  imports: [ForecastComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
