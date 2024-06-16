@@ -21,12 +21,10 @@ export class WeatherService {
     const url = `${this.apiUrl}?q=${location}&units=metric&appid=${this.apiKey}`;
     return this.http.get<any>(url).pipe(
       tap((data: any) => {
-        console.log('Weather data:', data);
         this.weatherData = data;
         this.isLoading = false; 
       }),
       catchError((error: any) => {
-        console.error('Error fetching weather data:', error);
         this.isLoading = false; 
         return throwError(error); 
       })
