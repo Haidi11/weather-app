@@ -4,7 +4,7 @@ import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import * as WeatherActions from '../actions/weather.actions';
-import { Weather } from '../models/weather.model'; // Adjust import path as per your structure
+import { Weather } from '../models/weather.model';
 import { WeatherService } from '../../service/weather.service';
 
 @Injectable()
