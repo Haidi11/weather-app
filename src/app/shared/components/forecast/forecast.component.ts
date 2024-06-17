@@ -3,7 +3,12 @@ import { ForecastInfoComponent } from '../forecast-info/forecast-info.component'
 import { DailyForecastComponent } from '../daily-forecast/daily-forecast.component';
 import { WeeklyForecastComponent } from '../weekly-forecast/weekly-forecast.component';
 import { CommonModule } from '@angular/common';
-import { WeatherService } from '../../service/weather.service';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { WeatherState } from '../../store/reducers/weather.reducer';
+import { selectError, selectWeather } from '../../store/selector/weather.selector';
+import { loadWeather } from '../../store/actions/weather.actions';
+
 
 const MODULES = [ 
   CommonModule
@@ -23,24 +28,19 @@ const COMPONENTS = [
   styleUrls: ['./forecast.component.scss']
 })
 export class ForecastComponent {
-  isLoading: boolean = true;
-  weatherData: any;
+  weather$: Observable<any>;
+  error$: Observable<string | null>;
 
-  constructor(private weatherService: WeatherService) { }
+  constructor(private store: Store<{ weather: WeatherState }>) {
+    this.weather$ = this.store.select(selectWeather);
+    this.error$ = this.store.select(selectError);
+  }
 
   ngOnInit(): void {
-    this.weatherService.getWeather('Maribor').subscribe(
-      (data: any) => {
-        this.weatherData = data;
-        this.isLoading = false;
-      },
-      (error: any) => {
-        console.error('Error fetching weather data', error);
-        this.isLoading = false;
-      }
-    );
-    // setTimeout(() => {
-    //   this.isLoading = false;
-    // }, 1000);
+    this.fetchWeather();
+  }
+
+  fetchWeather(): void {
+    this.store.dispatch(loadWeather({ location: 'Maribor' }));
   }
 }

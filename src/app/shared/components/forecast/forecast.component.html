@@ -7,15 +7,19 @@
     <span class="sr-only">Loading...</span>
 </div> -->
 
-<div  *ngIf="!isLoading" class="w-full flex flex-col items-center justify-center">
+<div class="w-full flex flex-col items-center justify-center">
     <div class="w-full h-11 min-w-full font-sans flex items-center justify-center bg-primary sticky top-0">Vremenska napoved</div>
-    <div class="max-h-480 w-80">
+    <div class="max-h-480 md:w-460">
         <div class="text-center text-primary">
             <app-forecast-info></app-forecast-info>
         </div>
-        <div class="flex place-content-between text-primary">
-            <app-daily-forecast></app-daily-forecast>
-            <app-weekly-forecast></app-weekly-forecast>
-        </div>
+        <div class="flex text-primary">
+            <div class="flex-1 mr-2">
+              <app-daily-forecast></app-daily-forecast>
+            </div>
+            <div class="flex-1 ml-2">
+              <app-weekly-forecast></app-weekly-forecast>
+            </div>
+        </div>     
     </div>
 </div>
