@@ -1,7 +1,11 @@
 {
-  "CURRENT_WEATHER": "Trenutno vreme",
+  "DAILY_FORECAST": "Trenutno vreme",
+  "WEEKLY_FORECAST": "Tedenska Napoved",
   "TEMP": "Temp",
   "DESCRIPTION": "Opis",
   "MIN_TEMP": "Min. Temp.",
-  "MAX_TEMP": "Max. Temp."
+  "MAX_TEMP": "Max. Temp.",
+  "DATE_FETCHED": "Pridobljeno",
+  "TITLE": "Vremenska napoved",
+  "REFRESH": "Osveži"
 }
