@@ -1,23 +1,27 @@
-import { Component } from '@angular/core';
-import { ForecastInfoComponent } from '../forecast-info/forecast-info.component';
-import { DailyForecastComponent } from '../daily-forecast/daily-forecast.component';
-import { WeeklyForecastComponent } from '../weekly-forecast/weekly-forecast.component';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
 import { WeatherState } from '../../store/reducers/weather.reducer';
 import { selectError, selectWeather } from '../../store/selector/weather.selector';
 import { loadWeather } from '../../store/actions/weather.actions';
+import { TranslationUtils } from '../../utils/translate-utils';
 
+import { DailyForecastComponent } from '../daily-forecast/daily-forecast.component';
+import { WeeklyForecastComponent } from '../weekly-forecast/weekly-forecast.component';
+import { ForecastInfoComponent } from '../forecast-info/forecast-info.component';
 
-const MODULES = [ 
-  CommonModule
+const MODULES = [
+  CommonModule,
+  TranslateModule
 ];
 
-const COMPONENTS = [ 
-  DailyForecastComponent, 
-  WeeklyForecastComponent, 
-  ForecastInfoComponent, 
+const COMPONENTS = [
+  DailyForecastComponent,
+  WeeklyForecastComponent,
+  ForecastInfoComponent
 ];
 
 @Component({
@@ -27,20 +31,41 @@ const COMPONENTS = [
   templateUrl: './forecast.component.html',
   styleUrls: ['./forecast.component.scss']
 })
-export class ForecastComponent {
+export class ForecastComponent implements OnInit {
   weather$: Observable<any>;
   error$: Observable<string | null>;
+  currentLang: string | undefined;
 
-  constructor(private store: Store<{ weather: WeatherState }>) {
+  constructor(
+    private store: Store<{ weather: WeatherState }>,
+    private translate: TranslateService
+  ) {
     this.weather$ = this.store.select(selectWeather);
     this.error$ = this.store.select(selectError);
   }
 
   ngOnInit(): void {
+    this.initializeTranslations();
     this.fetchWeather();
+    this.switchLanguage('slo');
   }
 
   fetchWeather(): void {
     this.store.dispatch(loadWeather({ location: 'Maribor' }));
+  }
+
+  onLanguageChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const language = selectElement.value;
+    this.switchLanguage(language);
+  }
+
+  private initializeTranslations(): void {
+    TranslationUtils.initializeTranslations(this.translate);
+  }
+
+  private switchLanguage(language: string): void {
+    TranslationUtils.switchLanguage(language, this.translate,);
+    this.currentLang = language;
   }
 }
