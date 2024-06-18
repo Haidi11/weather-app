@@ -12,6 +12,7 @@ import { TranslationUtils } from '../../utils/translate-utils';
 import { DailyForecastComponent } from '../daily-forecast/daily-forecast.component';
 import { WeeklyForecastComponent } from '../weekly-forecast/weekly-forecast.component';
 import { ForecastInfoComponent } from '../forecast-info/forecast-info.component';
+import { setLoading } from '../../store/actions/loading.actions';
 
 const MODULES = [
   CommonModule,
@@ -61,6 +62,10 @@ export class ForecastComponent implements OnInit {
   }
 
   refreshWeather(): void {
+    this.store.dispatch(setLoading(true));
+    setTimeout(() => {
+      this.store.dispatch(setLoading(false));
+    }, 2000);
     this.store.dispatch(loadWeather({ location: 'Maribor' }));
     this.store.dispatch(getWeeklyForecast({ lat: 46.5547, lon: 15.6459 }));
   }
