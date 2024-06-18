@@ -7,22 +7,13 @@ module.exports = {
     extend: {
       colors: {
         primary: '#e86e1e',
-      },
-      height: {
-        '480': '30rem',
-      },
-      width: {
-        '460': '460px',
-      },
-      spacing: {
-        '16px': '16px',
+        background: '#f0f0f0', // Define your background color
       },
       screens: {
         'sm': '320px',
         'md': '768px',
       },
     },
-
   },
   plugins: [],
 }

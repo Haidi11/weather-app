@@ -1,23 +1,23 @@
 <div class="w-full flex flex-col items-center justify-center">
-    <div class="w-full h-11 min-w-full font-sans flex items-center justify-center bg-primary sticky top-0">{{ 'TITLE' | translate }}</div>
-    <select (change)="onLanguageChange($event)" class="p-2 bg-white text-primary border border-primary rounded absolute left-0 top-[50px]">
+    <div class="w-full h-11 lg:h-14 font-sans flex items-center justify-center bg-primary sticky top-0">{{ 'TITLE' | translate }}</div>
+    <select (change)="onLanguageChange($event)" class="p-2 bg-white text-primary border border-primary rounded absolute left-0 top-[55px]">
         <option value="slo">SLO</option>
         <option value="eng">ENG</option>
     </select>
     <button (click)="refreshWeather()" class="bg-primary text-white font-bold py-2 px-4 rounded absolute left-0 top-[100px]">
         {{ 'REFRESH' | translate }}
       </button>
-    <div class="max-h-480 md:w-460">
-        <div class="text-center text-primary">
-            <app-forecast-info></app-forecast-info>
-        </div>
-        <div class="flex text-primary">
-            <div class="flex-1 mr-2">
-              <app-daily-forecast></app-daily-forecast>
-            </div>
-            <div class="flex-1 ml-2">
-              <app-weekly-forecast></app-weekly-forecast>
-            </div>
-        </div>     
-    </div>
+      <div class="max-h-480 w-full sm:w-80 lg:w-[460px] lg:max-w-[460px] p-4 sm:p-0 lg:m-8">
+          <div class="text-center text-primary">
+              <app-forecast-info></app-forecast-info>
+          </div>
+          <div class="flex flex-col md:flex-row text-primary">
+              <div class="flex-1">
+                  <app-daily-forecast></app-daily-forecast>
+              </div>
+              <div class="flex-1">
+                  <app-weekly-forecast></app-weekly-forecast>
+              </div>
+          </div>     
+      </div>      
 </div>
