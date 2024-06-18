@@ -6,7 +6,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { WeatherState } from '../../store/reducers/weather.reducer';
 import { selectError, selectWeather } from '../../store/selector/weather.selector';
-import { loadWeather } from '../../store/actions/weather.actions';
+import { getWeeklyForecast, loadWeather } from '../../store/actions/weather.actions';
 import { TranslationUtils } from '../../utils/translate-utils';
 
 import { DailyForecastComponent } from '../daily-forecast/daily-forecast.component';
@@ -58,6 +58,11 @@ export class ForecastComponent implements OnInit {
     const selectElement = event.target as HTMLSelectElement;
     const language = selectElement.value;
     this.switchLanguage(language);
+  }
+
+  refreshWeather(): void {
+    this.store.dispatch(loadWeather({ location: 'Maribor' }));
+    this.store.dispatch(getWeeklyForecast({ lat: 46.5547, lon: 15.6459 }));
   }
 
   private initializeTranslations(): void {

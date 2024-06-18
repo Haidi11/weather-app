@@ -4,6 +4,9 @@
         <option value="slo">SLO</option>
         <option value="eng">ENG</option>
     </select>
+    <button (click)="refreshWeather()" class="bg-primary text-white font-bold py-2 px-4 rounded absolute left-0 top-[100px]">
+        {{ 'REFRESH' | translate }}
+      </button>
     <div class="max-h-480 md:w-460">
         <div class="text-center text-primary">
             <app-forecast-info></app-forecast-info>
