@@ -1,0 +1,11 @@
+{
+  "DAILY_FORECAST": "Current Weather",
+  "WEEKLY_FORECAST": "Weekly Forecast",
+  "TEMP": "Temp",
+  "DESCRIPTION": "Description",
+  "MIN_TEMP": "Min. Temp.",
+  "MAX_TEMP": "Max. Temp.",
+  "DATE_FETCHED": "Data Fetched",
+  "TITLE": "Forecast",
+  "REFRESH": "Refresh"
+}
