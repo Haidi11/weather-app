@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root'
 })
 export class TranslationUtils {
-  constructor(private translate: TranslateService) {}
+  constructor() {}
 
   static initializeTranslations(translate: TranslateService) {
     translate.setTranslation('en', require('../../../assets/i18n/eng.json'));
