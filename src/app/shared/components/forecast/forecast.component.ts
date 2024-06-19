@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -16,7 +16,7 @@ import { setLoading } from '../../store/actions/loading.actions';
 
 const MODULES = [
   CommonModule,
-  TranslateModule
+  TranslateModule,
 ];
 
 const COMPONENTS = [
@@ -39,7 +39,7 @@ export class ForecastComponent implements OnInit {
 
   constructor(
     private store: Store<{ weather: WeatherState }>,
-    private translate: TranslateService
+    private translate: TranslateService,
   ) {
     this.weather$ = this.store.select(selectWeather);
     this.error$ = this.store.select(selectError);
